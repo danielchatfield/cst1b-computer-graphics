@@ -1,0 +1,78 @@
+\documentclass{supervision}
+\usepackage{course}
+
+\Supervision{2}
+\Topics{Graphics pipeline, algorithms for 2D and 3D}
+
+\begin{document}
+
+\section*{Warmup Questions}
+\begin{questions}
+    \question
+    Give as many reasons as possible why we use matrices to represent transformations. Explain why we use homogeneous coordinates.
+    \question
+    Are there any problems with texture mapping onto a sphere?
+    \question
+    Describe how Phong's specular reflection models real specular reflection. Whyis it only a rough approximation? Why is it useful?
+    \question
+    Draw pictures to show what is meant by:
+    \begin{parts}
+        \part{object coordinates}
+        \part{world coordinates}
+        \part{viewing coordinates}
+        \part{screen coordinates}
+    \end{parts}
+    \question
+    We use a lot of triangles to approximate stuff in computer graphics. Why are they good? Why are they bad? Can you think of any alternatives?
+
+\end{questions}
+
+\section*{Longer Questions}
+\begin{questions}
+    \SetQuestionNumber{3}
+    \question
+    Draw and explain two different scenes which have the same projection asseen by the viewer. What other cues can you give so that the viewer can distinguish the depth information?
+    \SetQuestionNumber{6}
+    \question
+    We often use triangles to represent a sphere. Describe twomethods of generating triangles from a sphere.
+    \question
+    Compare and contrast:
+    \begin{itemize}
+        \item{texture mapping}
+        \item{bump mapping}
+        \item{displacement mapping}
+    \end{itemize}
+    \SetQuestionNumber{10}
+    \question
+    \begin{parts}
+        \part{Show how to perform 2D rotation around an arbitrary point.}
+        \part{Show how to perform 3D rotation around an arbitrary axis parallel to the x-axis.}
+        \part{Show how to perform 3D rotation around an arbitrary axis.}
+    \end{parts}
+    
+\end{questions}
+
+\section*{Advanced Questions}
+\begin{questions}
+    \SetQuestionNumber{3}
+    \question
+    Define and then compare and contrast the following methods of specifying rotation in 3D.
+    
+    \textit{You will need to look these up}.
+    \begin{parts}
+        \part{Quarternions}
+        \part{Euler Angles}
+    \end{parts}
+    \question
+    Find out about the Coo-Torrance shading model and explain how this improves on the naïve diffuse+specular+ambient model.
+
+\end{questions}
+
+\section*{Practical Programming}
+\begin{questions}
+    \question
+    Write a program using OpenGL to display the scene that you rendered with your ray-tracer. Explore some different surface models in the fragment shader.
+\end{questions}
+
+
+\end{document}
