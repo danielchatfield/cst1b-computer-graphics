@@ -113,7 +113,9 @@
     \begin{solution}
     Triangles are guaranteed to be planar which simplifies the maths involved with calculating normals. Any polygon can be split up into triangles.
     
-    % TODO
+    \textit{Not sure about disadvantages}
+    
+    Hexagons? 
     \end{solution}
 
 
@@ -123,15 +125,16 @@
 \begin{questions}
     \SetQuestionNumber{3}
     \question
-    Draw and explain two different scenes which have the same projection as
-seen by the viewer. What other cues can you give so that the viewer can distinguish the depth information?
-    % TODO
+    Draw and explain two different scenes which have the same projection as seen by the viewer. What other cues can you give so that the viewer can distinguish the depth information?
+    \begin{solution}
+    Focus can be used to show depth (make items in the background out of focus).
+    \end{solution}
+
     \SetQuestionNumber{6}
     \question
     We often use triangles to represent a sphere. Describe two methods of generating triangles from a sphere.
     \begin{solution}
     \textit{Not sure about this}
-    % TODO
     \end{solution}
     \question
     Compare and contrast:
@@ -259,7 +262,6 @@ seen by the viewer. What other cues can you give so that the viewer can distingu
 
         \part{Show how to perform 3D rotation around an arbitrary axis.}
         \begin{solution}
-        % TODO
         \textit{Not sure about this? I think it is a translation, 3 rotations (one around each orthogonal axis) followed by t but can't get it to work.}
         \end{solution}
 
@@ -290,9 +292,6 @@ seen by the viewer. What other cues can you give so that the viewer can distingu
         \end{solution}
 
         \part{Euler Angles}
-        \begin{solution}
-        % TODO
-        \end{solution}
 
     \end{parts}
     \begin{solution}
@@ -304,9 +303,11 @@ seen by the viewer. What other cues can you give so that the viewer can distingu
     \end{solution}
 
     \question
-    Find out about the Coo-Torrance shading model and explain how this improves on the naïve diffuse+specular+ambient model.
+    Find out about the Cook-Torrance shading model and explain how this improves on the naïve diffuse+specular+ambient model.
     \begin{solution}
-    % TODO
+    The \textit{Cook-Torrance} shading model models specular reflections using \textit{microfacets}. Essentially it models a surface as a "sea" of V-shaped facets that act like perfect mirrors. It takes into account the Fresnel effect (that materials become more \textit{specular} at glancing angles and are more \textit{Lambertian} towards normal incidence).
+    
+    This model allows for shadowing at the micro scale and thus more accurately represents the reflection intensity at large angles of incidence.
     \end{solution}
 
 
@@ -320,7 +321,8 @@ seen by the viewer. What other cues can you give so that the viewer can distingu
     \begin{center}
         \includegraphics[width=0.5\textwidth]{2-p-screenshot}
     \end{center}
-    Source can be seen at: \url{}
+    Source can be seen at: \\
+    \url{https://github.com/danielchatfield/cst1b-computer-graphics/}
     \end{solution}
 
 \end{questions}
