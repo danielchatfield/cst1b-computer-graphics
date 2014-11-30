@@ -9,22 +9,89 @@
 
 \section*{From Supervision 2}
 \begin{questions}
-    \question
-    Derive the conditions necessary for two Bézier curves to join with:
-    \begin{parts}
-        \part{just C0-continuity}
-        \part{C1-continuity}
-        \part{C2-continuity}
-    \end{parts}
+  \question Derive the conditions necessary for two Bézier curves to join with:
+    \begin{solution}
+      Consider two bezier curves $p(t)$ and $q(t)$, defined by control points
+      $(p_0,p_1,..., p_n)$ and $(q_0, q_1,..., q_n)$ respectively.
+    \end{solution}
+  \begin{parts}
+    \part just C0-continuity
+      \begin{solution}
+        $C0$ continuity can be achieved by setting $p(1) = q(0)$ giving:
+        \begin{center}
+          $q_0 = p_n$
+        \end{center}
+      \end{solution}
+    \part C1-continuity
+      \begin{solution}
+        $C1$ continuity can be achieved with the additional constraint that
+        $p'(1) = q'(0)$ giving:
+        \begin{center}
+          $q_1 - q_0 = p_n - P_{n-1}$
+        \end{center}
 
-    \question
-    What would be difficult about getting three Bézier curves to join in sequence with C2-continuity at the two joins?
+        Which when combined with the above constraint gives:
+        \begin{center}
+          $q_1 = 2p_n - p_{n-1}$
+        \end{center}
+      \end{solution}
+    \part C2-continuity
+      \begin{solution}
+        For $C2$ continuity we must also have that $p''(1) = q''(0)$, giving:
+        \begin{center}
+          $q_2 - 2q_1 + q_0 = p_n - 2P_{n-1} + p_{n-2}$
+        \end{center}
 
-    \question
-    For a cylinder of radius 2, with endpoints $(1,2,3)$ and $(2,4,5)$, show how to calculate:
+        Which when combined with the above constraint gives:
+        \begin{center}
+          $q_2 = p_{n-2} + 4(p_n - p_{n-1})$
+        \end{center}
+      \end{solution}
+  \end{parts}
+
+  \question What would be difficult about getting three Bézier curves to join
+    in sequence with C2-continuity at the two joins?
+    \begin{solution}
+
+    \end{solution}
+
+  \question
+    For a cylinder of radius $2$, with endpoints $(1,2,3)$ and $(2,4,5)$, show
+    how to calculate:
     \begin{parts}
-        \part{an axis-aligned bound box}
-        \part{a bounding sphere}
+      \part an axis-aligned bounding box
+        \begin{solution}
+          Let $m$, $n$, and $o$ represent the $x$, $y$, and $z$ axes
+          respectively.
+
+          Let $A$ and $B$ be the endpoints such that $A_M <= B_M$.
+
+          Let $
+          \delta =
+          \frac{\sqrt{(A_n - B_n)^2 + (A_o - B_o)^2}}
+               {(A_m - B_m)^2 + (A_n - B_n)^2 + (A_o - B_o)^2}
+          $
+
+          $m_{min} = A_m - \delta \times r$ \\
+          $m_{max} = B_m + \delta \times r$
+
+
+        \end{solution}
+
+      \part a bounding sphere
+        \begin{solution}
+          % TODO Image here
+          The bounding sphere has midpoint that is half way between the two
+          endpoints:
+          ${mid} = (1.5, 3, 4)$
+
+          The radius is the distance from the midpoint to a point on the edge
+          of the cylinder.
+
+          One such point is $(2, 4 + \sqrt{2}, 5 - \sqrt{2})$.
+
+          Giving: $r = \sqrt{(0.5)^2 + (1+\sqrt{2})^2 + (1-\sqrt{2})^2} = 2.5$
+        \end{solution}
     \end{parts}
 
     \question
