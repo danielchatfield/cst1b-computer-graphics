@@ -1,0 +1,94 @@
+\documentclass{supervision}
+\usepackage{course}
+\usepackage{fancyvrb}
+
+\Supervision{3}
+\Topics{Colour, displays and image processing}
+
+\begin{document}
+
+\section*{From Supervision 2}
+\begin{questions}
+    \question
+    Derive the conditions necessary for two Bézier curves to join with:
+    \begin{parts}
+        \part{just C0-continuity}
+        \part{C1-continuity}
+        \part{C2-continuity}
+    \end{parts}
+
+    \question
+    What would be difficult about getting three Bézier curves to join in sequence with C2-continuity at the two joins?
+
+    \question
+    For a cylinder of radius 2, with endpoints $(1,2,3)$ and $(2,4,5)$, show how to calculate:
+    \begin{parts}
+        \part{an axis-aligned bound box}
+        \part{a bounding sphere}
+    \end{parts}
+
+    \question
+    Break down the following (2D!) lines into a BSP-tree, splitting them if necessary:
+    \begin{itemize}
+        \item{$(0,0)-(2,2)$}
+        \item{$(3,4)-(1,3)$}
+        \item{$(1,0)-(-3,1)$}
+        \item{$(0,3)-(3,3)$}
+        \item{$(2,0)-(2,1)$}
+    \end{itemize}
+
+    \question
+    \begin{parts}
+        \part{Compare the two methods of doing 3D clipping in terms of efficiency}
+        \part{How would using bounding volumes improve efficiency of these methods?}
+    \end{parts}
+
+    \question
+    Describe a complete algorithm to do 3D polygon scan conversion, including details of clipping, projection, and the underlying 2D polygon scan conversion algorithm.
+
+    \question
+    Describe how you would form a good approximation to a cylinder from Bézier patches. Draw the patches and their control points and give the coordinates of the control points.
+
+    \question
+    Given the following sixteen points, calculate the first eight of the next patch joining it as $t$ increases so that the join has continuity $C1$. Here the points are listed with $s=0$, $t=0$ on the bottom left, with $s$ increasing upwards and $t$ increasing to the right:
+    \begin{Verbatim}[fontsize=\scriptsize]
+(-0.2, 3.4,  0.3)    (1.0, 3.1, 0.2)    (2.0, 2.6, -0.2)    (3.1, 2.8,  0.2)
+( 0.0, 1.2,  0.4)    (1.2, 2.0, 1.2)    (1.4, 1.9, -0.2)    (2.7, 1.8,  0.2)
+( 0.2, 1.0, -0.2)    (1.1, 0.8, 0.5)    (1.4, 1.0,  0.0)    (3.1, 1.1, -0.2)
+( 0.0, 0.0,  0.0)    (1.0, 0.0, 0.5)    (2.0, 0.2,  0.4)    (2.7, 0.0, -0.2)
+    \end{Verbatim}
+
+\end{questions}
+
+\section*{\Topics}
+\subsection*{Warmup Questions}
+\begin{questions}
+    \question
+    Compare and contrast the use of LCDs and electrophoretic displays for screens in portable devices.
+
+    \question
+    Compare the rendering in some different pieces of printed material. Use a magnifying glass to explore the resolution, colours and patterns used.
+
+\end{questions}
+
+\subsection*{Longer Questions}
+\begin{questions}
+    \question
+    Explain the use of each of the following colour spaces:
+    \begin{parts}
+        \part{$RGB$}
+        \part{$XYZ$}
+        \part{$HLS$}
+        \part{$Luv$}
+    \end{parts}
+    \question
+    Explain the difference between additive colour (RGB) and subtractive colour (CMY). Where is each used and why is it used there?
+
+    \question
+    Compare the two methods of \emph{Error Diffusion} described in the notes, with the aid of a sample image.
+
+\end{questions}
+
+
+
+\end{document}
