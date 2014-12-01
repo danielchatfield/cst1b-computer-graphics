@@ -133,6 +133,32 @@
     including details of clipping, projection, and the underlying 2D polygon
     scan conversion algorithm.
     \begin{solution}
+
+      \begin{lstlisting}[gobble=8]
+        class Screen():
+          def __init__(self, x=1920, y =1080):
+            self.x = x
+            self.y = y
+          def get_pixels(self):
+            for x in range(0, self.x):
+              for y in range(0, self.y):
+                yield (x,y)
+
+        class Polygon():
+          get_pixels():
+            # projects the polygon to 2D and runs 2D polygon scan-conversion
+
+        for (x,y) in screen.get_pixels():
+          color[x][y] = background_color
+          depth[x][y] = infinity
+
+        for polygon in scene:
+          for (x,y) in polygon.get_pixels():
+            if polygon.depth(x,y) < depth[x][y]:
+              depth[x][y] = z
+              color[x][y] = polygon.color(x,y)
+      \end{lstlisting}
+
       % TODO
     \end{solution}
 
@@ -141,6 +167,7 @@
     the coordinates of the control points.
     \begin{solution}
       % TODO
+      \emph{Not sure why you can't just use two bezier patches, one for each side of the cylinder (although this doesn't do the top).}
     \end{solution}
 
   \question Given the following sixteen points, calculate the first eight of
@@ -154,7 +181,12 @@
 ( 0.0, 0.0,  0.0)    (1.0, 0.0, 0.5)    (2.0, 0.2,  0.4)    (2.7, 0.0, -0.2)
     \end{Verbatim}
     \begin{solution}
-      % TODO
+      \begin{Verbatim}[fontsize=\scriptsize]
+(3.1, 2.8,  0.2)    (4.2,  3.0,  0.6)
+(2.7, 1.8,  0.2)    (4.0,  1.7,  0.6)
+(3.1, 1.1, -0.2)    (4.8,  1.2, -0.4)
+(2.7, 0.0, -0.2)    (3.4, -0.2, -0.8)
+      \end{Verbatim}
     \end{solution}
 \end{questions}
 
@@ -163,10 +195,16 @@
 \begin{questions}
   \question Compare and contrast the use of LCDs and electrophoretic displays
     for screens in portable devices.
+    \begin{solution}
+      % TODO
+    \end{solution}
 
   \question Compare the rendering in some different pieces of printed
     material. Use a magnifying glass to explore the resolution, colours and
     patterns used.
+    \begin{solution}
+      % TODO
+    \end{solution}
 
 \end{questions}
 
@@ -174,16 +212,44 @@
 \begin{questions}
   \question Explain the use of each of the following colour spaces:
     \begin{parts}
-      \part{$RGB$}
-      \part{$XYZ$}
-      \part{$HLS$}
-      \part{$Luv$}
+      \part $RGB$
+        \begin{solution}
+          The standard RGB colour space was created for use on monitors and
+          the internet. Since displays use red, green, and blue LEDs to create
+          light it suits this application well.
+        \end{solution}
+      \part $XYZ$
+        \begin{solution}
+          The first attempt to produce a colour space based on measurements of
+          human colour perception and it is the basis for almost all other
+          colour spaces.
+        \end{solution}
+      \part $HSL$
+        \begin{solution}
+          Used by artists as it is more natural to think about a colour in
+          terms of hue and saturation rather than additive or subtractive
+          colour components.
+        \end{solution}
+      \part $LUV$
+        \begin{solution}
+          It is used in computer graphics when dealing with coloured lights.
+          Additive mixtures of different colours will not fall along a line in
+          the ${LUV}$ colour space unless the mixtures have the same lightness.
+        \end{solution}
     \end{parts}
   \question Explain the difference between additive colour (${RGB}$) and
     subtractive colour (${CMY}$). Where is each used and why is it used there?
+    \begin{solution}
+      Additive colour is good when dealing with light as that is how
+      combinations of light sources behave. Subtractive colour is used when
+      dealing with the colour of an object as this works by absorbing light.
+    \end{solution}
 
   \question Compare the two methods of \emph{Error Diffusion} described in the
     notes, with the aid of a sample image.
+    \begin{solution}
+      % TODO
+    \end{solution}
 
 \end{questions}
 \end{document}
