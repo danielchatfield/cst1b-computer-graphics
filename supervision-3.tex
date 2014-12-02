@@ -53,7 +53,7 @@
   \question What would be difficult about getting three Bézier curves to join
     in sequence with C2-continuity at the two joins?
     \begin{solution}
-
+      Control points would be dependant on two other curves?
     \end{solution}
 
   \question
@@ -81,7 +81,9 @@
 
       \part a bounding sphere
         \begin{solution}
-          % TODO Image here
+          \begin{center}
+            \includegraphics[width=0.5\textwidth]{3-3-bounding-sphere}
+          \end{center}
           The bounding sphere has midpoint that is half way between the two
           endpoints:
           ${mid} = (1.5, 3, 4)$
@@ -105,7 +107,9 @@
       \item[e] $(2,0)-( 2,1)$
     \end{description}
     \begin{solution}
-      % TODO image here
+      \begin{center}
+        \includegraphics[width=0.5\textwidth]{3-4-bsp}
+      \end{center}
       \Tree[.a
         [.d b   c_1 ]
         [.e c_2     ]
@@ -166,7 +170,6 @@
     from Bézier patches. Draw the patches and their control points and give
     the coordinates of the control points.
     \begin{solution}
-      % TODO
       \emph{Not sure why you can't just use two bezier patches, one for each side of the cylinder (although this doesn't do the top).}
     \end{solution}
 
@@ -196,15 +199,25 @@
   \question Compare and contrast the use of LCDs and electrophoretic displays
     for screens in portable devices.
     \begin{solution}
-      % TODO
+      LCDs are more common in mobile devices as they can produce a wide
+      variety of colours and are thus suitable for the rich interface on
+      mobile phones and tablets.
+
+      Electrophoretic displays are typically used in e-book readers as it is
+      easier to read for extended periods of time from an electrophoretic
+      display than an LCD display. They also have the benefit that power is
+      only required to change the display which means the e-book reader can
+      have a long battery life as changing the display is not a frequent
+      operation.
+
+      LCDs have a faster refresh rate than e-ink displays and a higher pixel
+      density, and due to the backlight can be seen in darkness (although some
+      e-ink displays do now have backlights).
     \end{solution}
 
   \question Compare the rendering in some different pieces of printed
     material. Use a magnifying glass to explore the resolution, colours and
     patterns used.
-    \begin{solution}
-      % TODO
-    \end{solution}
 
 \end{questions}
 
@@ -247,9 +260,7 @@
 
   \question Compare the two methods of \emph{Error Diffusion} described in the
     notes, with the aid of a sample image.
-    \begin{solution}
-      % TODO
-    \end{solution}
+    % TODO
 
 \end{questions}
 \end{document}
