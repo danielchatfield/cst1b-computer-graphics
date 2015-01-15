@@ -1,0 +1,61 @@
+\documentclass{supervision}
+\usepackage{course}
+
+\Supervision{4}
+
+\begin{document}
+  \begin{questions}
+    \section*{Past exam paper questions}
+    \question 2012 Paper 4 Question 3
+      \begin{parts}
+        \part[2] What are the main criteria to be considered in the design of a
+          line drawing algorithm for a raster graphics display?
+
+        \part[6] Describe an algorithm to fill a series of pixels running from
+          $(x0,y0)$ to $(x1,y1)$ that meets these criteria, explaining why it
+          does so. Answers should consist of more than a fragment of
+          pseudo-code.
+
+        \part[6] A new volumetric display stores an image as a
+          three-dimensional array of volume elements or voxels. Reformulate the
+          design and implementation of the line-drawing algorithm to fill a
+          series of voxels running from $(x0,y0,z0)$ to $(x1, y1, z1)$.
+
+        \part[6] How would this line-drawing algorithm be used to draw Bézier
+          curves in three dimensions?
+
+      \end{parts}
+    \question 2011 Paper 4 Question 3
+      You are writing code for a new graphics card that is software
+      programmable, rather than having the algorithms embedded in hardware. You
+      want to write a fast triangle-drawing program to test the card.
+
+      \begin{parts}
+        \part[13] Provide pseudocode, or similar, that draws a triangle with a
+          constant colour. Assume that the inputs are the colour of the
+          triangle and three two-dimensional points, representing the three
+          vertices of the triangle. Further, assume that all three vertices lie
+          on the visible screen and that no anti-aliasing is required. You may
+          assume that there is a function to set a pixel, $(x, y)$, to a
+          particular colour, $c$, e.g. ${setpixel}(x,y,c)$, but you must
+          provide pseudocode for any other functions that you require. Your
+          answer should be sufficiently detailed that it could be transferred
+          directly into a language such as Java but your answer does not,
+          itself, have to be syntactically correct.
+
+        \part[4] Outline the extra steps required to draw a triangle specified
+          by three-dimensional points in world space, where the triangle may
+          extend beyond the edges of the screen after conversion to screen
+          space.
+
+        \part[3] Outline the steps required to calculate the triangle’s colour,
+          assuming diffuse shading, with multiple point lights, but still
+          producing a single colour for the whole triangle.
+
+      \end{parts}
+
+    \section*{Practical Programming}
+    \question Implement one curve drawing algorithm in 2D. Note that your
+      algorithm should use a line drawing algorithm to draw curve segments.
+  \end{questions}
+\end{document}
