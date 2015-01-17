@@ -10,19 +10,134 @@
       \begin{parts}
         \part[2] What are the main criteria to be considered in the design of a
           line drawing algorithm for a raster graphics display?
+          \begin{solution}
+            \begin{itemize}
+              \item Make the line appear to have uniform thickness.
+              \item Don't leave gaps in the line
+            \end{itemize}
+          \end{solution}
 
         \part[6] Describe an algorithm to fill a series of pixels running from
-          $(x0,y0)$ to $(x1,y1)$ that meets these criteria, explaining why it
-          does so. Answers should consist of more than a fragment of
+          $(x_0, y_0)$ to $(x_1, y_1)$ that meets these criteria, explaining
+          why it does so. Answers should consist of more than a fragment of
           pseudo-code.
+          \begin{solution}
+            \begin{python}
+                def draw_line(x0,y0,x1,y1):
+                    # The algorithm relies upon these assumptions:
+                    # - x0 < x1 (line goes left to right)
+                    # - the gradient is between -1 and 1 (otherwise the line
+                    #   is too steep and gaps appear)
+                    #
+                    # The following section of code checks these conditions
+                    # and swaps the coordinates around so that they are
+                    # satisfied
+
+                    flipped = False # True if x and y have been swapped with
+                                    # each other
+
+                    if abs(y1-y0) > abs(x1-x0):
+                        flipped = True
+                        x0, x1, y0, y1 = y0, y1, x0, x1
+
+                    if x0 > x1:
+                        x0, x1, y0, y1 = x1, x0, y1, y0
+
+                    delta_x = x1 - x0
+                    delta_y = abs(y1 - y0)
+                    error = delta_x / 2
+
+                    y = y0
+                    y_step = y1 < y2 ? 1 : -1
+
+                    # For each column draw a single pixel, if error becomes
+                    # positive then we need to either increment or decrement y
+                    # for the next pixel.
+                    for x in range(x0, x1+1):
+                        if flipped:
+                            draw(y, x)
+                        else:
+                            draw(x, y)
+                        error -= delta_y
+                        if error < 0:
+                            y += y_step
+                            error += delta_x
+
+                    # This algorithm ensures that the line has uniform
+                    # thickness with no gaps by plotting a single pixel for
+                    # each column. For gradients not between -1 and 1 it swaps
+                    # them first (thus plotting a single pixel for each row
+                    # instead)
+            \end{python}
+          \end{solution}
 
         \part[6] A new volumetric display stores an image as a
           three-dimensional array of volume elements or voxels. Reformulate the
           design and implementation of the line-drawing algorithm to fill a
           series of voxels running from $(x0,y0,z0)$ to $(x1, y1, z1)$.
+          \begin{solution}
+            \begin{python}
+              def draw_line_3d(x0,y0,z0,x1,y1,z1):
+                  # The algorithm relies upon these assumptions:
+                  # - x0 < x1 (line goes left to right)
+                  # - delta_x > delta_y and delta_x > delta_z
+                  #
+                  # The following section of code checks these conditions
+                  # and swaps the coordinates around so that they are
+                  # satisfied
+
+                  x_flipped_with = False
+
+                  if abs(y1-y0) > abs(x1-x0) and abs(y1-y0) > abs(z1-z0):
+                      flipped = "y"
+                      x0, x1, y0, y1 = y0, y1, x0, x1
+
+                  if abs(z1-z0) > abs(x1-x0) and abs(z1-z0) > abs(y1-y0):
+                      flipped = "z"
+                      x0, x1, z0, z1 = z0, z1, x0, x1
+
+                  if x0 > x1:
+                      x0, y0, z0, x1, y1, z1 = x1, y1, z1, x0, y0, z0
+
+                  delta_x = x1 - x0
+                  delta_y = abs(y1 - y0)
+                  delta_z = abs(z1 - z0)
+                  error_y = error_z = delta_x / 2
+
+                  y = y0
+                  z = z0
+                  y_step = y0 < y1 ? 1 : -1
+                  z_step = z0 < z1 ? 1 : -1
+
+                  # For each column draw a single pixel, if error becomes
+                  # positive then we need to either increment or decrement y/z
+                  # for the next pixel.
+                  for x in range(x0, x1+1):
+                      if flipped == "y":
+                          draw(y, x, z)
+                      elif flipped == "z":
+                          draw(z, y, x)
+                      else:
+                          draw(x, y, z)
+                      error_y -= delta_y
+                      error_z -= delta_z
+
+                      if error_y < 0:
+                          y += y_step
+                          error_y += delta_x
+
+
+                      if error_z < 0:
+                          z += z_step
+                          error_z += delta_x
+            \end{python}
+          \end{solution}
 
         \part[6] How would this line-drawing algorithm be used to draw Bézier
           curves in three dimensions?
+          \begin{solution}
+            % TODO do this question
+          \end{solution}
 
       \end{parts}
     \question 2011 Paper 4 Question 3
@@ -42,16 +157,70 @@
           answer should be sufficiently detailed that it could be transferred
           directly into a language such as Java but your answer does not,
           itself, have to be syntactically correct.
+          \begin{solution}
+            \begin{python}
+              def draw_triangle(x0, y0, x1, y1, x2, y2, c):
+                if y2 < y1:
+                    x1, y1, x2, y2 = x2, y2, x1, y1
+
+                if y1 < y0:
+                    x0, y0, x1, y1 = x1, y1, x0, y0
+
+                if y2 < y1:
+                    x1, y1, x2, y2 = x2, y2, x1, y1
+
+                # coordinates are now sorted by y
+
+                gradient_1 = (x1 - x0) / (y1 - y0)
+                gradient_2 = (x2 - x0) / (y2 - y0)
+
+                for row in range(y0, y1):
+                    intersection_1 = x0 + (row - y0) * gradient_1
+                    intersection_2 = x0 + (row - y0) * gradient_2
+
+                    if intersection_2 < intersection_1:
+                        intersection_1, intersection_2 = (intersection_2,
+                            intersection_1)
+
+                    for col in range(intersection_1, intersection_2+1):
+                        setpixel(col, row, c)
+
+                gradient_1 = (x1 - x2) / (y1 - y2)
+
+                for row in range(y1, y2):
+                    intersection_1 = x0 + (row - y2) * gradient_1
+                    intersection_2 = x0 + (row - y0) * gradient_2
+
+                    if intersection_2 < intersection_1:
+                        intersection_1, intersection_2 = (intersection_2,
+                            intersection_1)
+
+                    for col in range(intersection_1, intersection_2+1):
+                        setpixel(col, row, c)
+            \end{python}
+          \end{solution}
 
         \part[4] Outline the extra steps required to draw a triangle specified
           by three-dimensional points in world space, where the triangle may
           extend beyond the edges of the screen after conversion to screen
           space.
+          \begin{solution}
+            \begin{itemize}
+              \item Project the coordinates onto the 2D screen space.
+              \item clip to the edge of the screen (splitting into smaller
+                triangles)
+            \end{itemize}
+          \end{solution}
 
         \part[3] Outline the steps required to calculate the triangle’s colour,
           assuming diffuse shading, with multiple point lights, but still
           producing a single colour for the whole triangle.
-
+          \begin{solution}
+            For each pixel that is part of the triangle calculate the diffuse
+            shading using the normal to the surface of the triangle and the
+            direction to each of the light sources. Combine these to get the
+            overall shading for that pixel.
+          \end{solution}
       \end{parts}
 
     \section*{Practical Programming}
