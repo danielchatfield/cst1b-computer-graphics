@@ -48,7 +48,7 @@
                     error = delta_x / 2
 
                     y = y0
-                    y_step = y1 < y2 ? 1 : -1
+                    y_step = 1 if y0 < y1 else -1
 
                     # For each column draw a single pixel, if error becomes
                     # positive then we need to either increment or decrement y
@@ -106,8 +106,8 @@
 
                   y = y0
                   z = z0
-                  y_step = y0 < y1 ? 1 : -1
-                  z_step = z0 < z1 ? 1 : -1
+                  y_step = 1 if y0 < y1 else -1
+                  z_step = 1 if z0 < z1 else -1
 
                   # For each column draw a single pixel, if error becomes
                   # positive then we need to either increment or decrement y/z
@@ -136,7 +136,14 @@
         \part[6] How would this line-drawing algorithm be used to draw Bézier
           curves in three dimensions?
           \begin{solution}
-            % TODO do this question
+            \begin{enumerate}
+              \item Determine whether the line from $p_0$ to $p_3$ is an
+                adequate aproximation by checking whether it is within a
+                certain tolerance of the Bézier curve. If it is then draw the
+                line and stop, otherwise continue.
+              \item Subdivide the curve into two bezier curves and return to
+                step 1 for each.
+            \end{enumerate}
           \end{solution}
 
       \end{parts}
@@ -226,5 +233,8 @@
     \section*{Practical Programming}
     \question Implement one curve drawing algorithm in 2D. Note that your
       algorithm should use a line drawing algorithm to draw curve segments.
+      \begin{solution}
+        \pythonfile{3-curve-drawing/draw_curve.py}
+      \end{solution}
   \end{questions}
 \end{document}
